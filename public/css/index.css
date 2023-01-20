@@ -1,11 +1,12 @@
 .mainpage {
-    background-color: #555555;
+    width: 80%;
     padding: 0 3%;
     font-family: 'Inter', sans-serif;
     position: absolute;
-    top: 50%;
-    transform: translateY(-40%);
     background: transparent;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .inner-mainpage {
