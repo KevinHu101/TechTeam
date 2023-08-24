@@ -21,19 +21,48 @@ const auth = getAuth(app);
 const user = auth.currentUser;
 
 //create individual element for nav
-function createNavElement() {
-    var locationToken = '<li><a href="stls.html">STLS</a></li>';
-    var locationToken2 = "";
 
-    if (window.location.href.includes("task.html")) {
-        locationToken = '<li><a href="profile.html">PROFILE</a></li>';
-        locationToken2 =
-            '<li><ion-icon name="log-out-outline" size="large" id="out"></ion-icon></li>';
-    } else if (window.location.href.includes("profile.html")) {
-        locationToken = '<li><a href="task.html">TASK</a></li>';
-        locationToken2 =
-            '<li><ion-icon name="log-out-outline" size="large" id="out"></ion-icon></li>';
+function createNavElement() {
+    var locationToken = "";
+
+
+    // auth.onAuthStateChanged(function (user) {
+    //     if (user) {
+    //         locationToken3 =
+    //         '<li><ion-icon name="log-out-outline" size="large" id="out"></ion-icon></li>';
+    //         console.log(locationToken3)
+    //     } else {
+    //         // location.href = "stls.html";
+    //     }
+    // });
+
+
+    //Default header li
+    locationToken = 
+        `<ul class="nav">
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="request.html">REQUEST</a></li>
+            <li><a href="stls.html">STLS</a></li>
+            <li><a href="learn.html">LEARN</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><ion-icon name="sunny-outline" size="large" id="sun"></ion-icon></li>
+        </ul>`
+
+    //Reconstruct header li if user is logged in in STLs page
+    if (window.location.href.includes("task.html") || window.location.href.includes("profile.html")) {
+        locationToken = 
+            `<ul class="nav">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="profile.html">PROFILE</a></li>
+                <li><a href="task.html">TASK</a></li>
+                <li><a href="learn.html">LEARN</a></li>
+                <li><ion-icon name="sunny-outline" size="large" id="sun"></ion-icon></li>
+                <li><ion-icon name="log-out-outline" size="large" id="out"></ion-icon></li>
+            </ul>`
     }
+
+
+
 
     const headerTemplate = document.createElement("template");
     headerTemplate.innerHTML = `
@@ -62,19 +91,17 @@ function createNavElement() {
     }
     
     .header{
-        margin: 0px;
         min-width: 100%;
         height: 100px;
-        background-color: #171717;
+        background-color: transparent;
         text-decoration: none;
         display: flex;
         justify-content: space-between;
-        position: sticky;
-        top: 0;
+        position: absolute;
         z-index: 100;
         user-select: none;
         font-family: 'Poppins', sans-serif;
-        outline: #7c7c7c solid 2px;
+        top: 0;
     }
     
     .logo_container{
@@ -86,6 +113,7 @@ function createNavElement() {
         color:white;
         font-size: 50px;
         font-weight: 100;
+        letter-spacing: 1.2px
     }
     
     .logo_container h1 span{
@@ -99,20 +127,20 @@ function createNavElement() {
         display: flex;
         align-items: center;
         font-size: 18px;
+        letter-spacing: 1.2px
     }
     
     .nav a{
         text-decoration: none;
-        color: #fff;
-        display:block;
+        color: #ffffff;
+        display: block;
         padding: 5px;
+        transition: all 0.2s ease-in-out;
     }
     
     .nav a:hover{
-        transition: all 0.3s ease-in-out;
-        color: #9c9c9c;
-        /* transform: rotate(366deg); */
-        /* font-size: 22px; */
+        transition: all 0.2s ease-in-out;
+        color: #aaaaaa;
         padding: 5px;
     }
     
@@ -165,7 +193,6 @@ function createNavElement() {
             color: #ffd900;
         }
     }
-    
     </style>
     
     
@@ -180,22 +207,18 @@ function createNavElement() {
     
     <div class="header">
             <div class="logo_container">
-                <h1>CV<span> TechTeam</span></h1>
+                <h1>CV<span> Tech Team</span></h1>
             </div>
     
-            <ul class="nav">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="request.html">REQUEST</a></li>
-                ${locationToken}
-                <li><a href="learn.html">LEARN</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><ion-icon name="sunny-outline" size="large" id="sun"></ion-icon></li>
-                ${locationToken2}
-            </ul>
+            ${locationToken}
+            
             </div>
     `;
     return headerTemplate;
 }
+
+
+
 
 //construct the nav
 class Header extends HTMLElement {
@@ -207,6 +230,22 @@ class Header extends HTMLElement {
     connectedCallback() {
         const shadowRoot = this.attachShadow({ mode: "open" });
         shadowRoot.appendChild(createNavElement().content);
+
+        // Highlight current tab
+        var allTabs = document
+            .querySelector("header-component")
+            .shadowRoot.querySelectorAll("li");
+
+        for (var i = 0; i < allTabs.length; i++) {
+            if (location.href.includes(allTabs[i].textContent.toLowerCase())) {
+                var innerContent = `${allTabs[i].innerHTML.substring(
+                    0,
+                    2
+                )} style="color:black;"${allTabs[i].innerHTML.substring(2)}`;
+                allTabs[i].innerHTML = innerContent;
+                break;
+            }
+        }
     }
 }
 customElements.define("header-component", Header);

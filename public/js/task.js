@@ -58,11 +58,13 @@ constructTask(
 );
 constructTask(await getDocs(chromeRequest), document.getElementById("c3Tasks"));
 constructTask(await getDocs(otherRequest), document.getElementById("c4Tasks"));
+// constructTask(await getDocs(finishedRequest), document.getElementById("c5Task"));
 
 checkTaskNumber("c1");
 checkTaskNumber("c2");
 checkTaskNumber("c3");
 checkTaskNumber("c4");
+checkTaskNumber("c5");
 
 //function that construct and append task li
 function constructTask(requests, tasks) {
@@ -93,7 +95,7 @@ function constructTask(requests, tasks) {
         //construct & add li tag
         let newListItem = document.createElement("li");
         newListItem.innerHTML = `<li class="tags"><ion-icon name="ellipse" id=level></ion-icon> <span id=id>${id}</span> ${fullName} 
-        <ion-icon name="hand-right-outline" id="assign"></ion-icon><ion-icon name="trash-outline" id="delete"></ion-icon>
+        <ion-icon name="hand-right-outline" id="assign"></ion-icon><ion-icon name="trash-outline" id="delete"></ion-icon><ion-icon name="checkmark-outline" id="check"></ion-icon>
         ${studentName}
         ${email}
         ${phoneNumber}

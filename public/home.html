@@ -7,20 +7,20 @@
 
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/home.css" />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;800&family=Lora:wght@500&family=Manrope:wght@500&family=Montserrat:wght@500&family=Poppins:wght@700&display=swap"
             rel="stylesheet"
         />
         <script type="module" src="js/header-component.js"></script>
-        <script type="module" src="js/index.js"></script>
+        <script type="module" src="js/home.js"></script>
         <script
             type="module"
-            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
         ></script>
         <script
             nomodule
-            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
         ></script>
         <title>CV TechTeam</title>
     </head>
@@ -31,6 +31,7 @@
         <div class="slider">
             <div class="arrowHover" id="arrowHover-left">
                 <ion-icon
+                    onmouseover="this.title='';"
                     name="chevron-back-outline"
                     class="arrows"
                     id="arrLeft"
@@ -46,6 +47,8 @@
 
             <div class="slider-cover"></div>
             <div class="slider-inner">
+                <img class="img" src="./imgs/5.jpg" />
+
                 <img class="img" src="./imgs/1.jpg" />
 
                 <img class="img" src="./imgs/2.jpg" />
@@ -66,11 +69,13 @@
 
         <div class="mainpage">
             <div class="inner-mainpage">
-                <h1 class="title">Welcome to the CV TechTeam Website!</h1>
+                <!-- <h2>Submit a tech request <span>&#8623;</span></h2> -->
 
-                <br />                                                                                                                                                  
-                <h2>Submit a tech request <span>&#8623;</span></h2>
-                <a href="request.html" class="button">Tech-Request</a>
+
+                <div class="arrowsDiv">
+                    <img src="./imgs/Arrows.png">
+                    <a href="request.html" class="button">Tech Request</a>
+                </div>
                 <br />
             </div>
         </div>

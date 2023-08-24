@@ -35,6 +35,10 @@ body {
     background-color: #666666;
 }
 
+.c5 {
+    background-color: #2fff00ae;
+}
+
 .container {
     position: relative;
     max-width: 100%;
@@ -209,7 +213,8 @@ body {
 }
 
 #delete,
-#assign {
+#assign,
+#check {
     position: absolute;
     right: -60px;
     top: 0px;
@@ -225,6 +230,12 @@ body {
     background-color: #ffb300;
     opacity: 0;
     z-index: -1;
+}
+
+#check {
+    background-color: #00ff08;
+    z-index: 3;
+    opacity: 1;
 }
 
 .tasks li:hover #delete {
