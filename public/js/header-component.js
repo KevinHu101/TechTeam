@@ -25,7 +25,6 @@ const user = auth.currentUser;
 function createNavElement() {
     var locationToken = "";
 
-
     // auth.onAuthStateChanged(function (user) {
     //     if (user) {
     //         locationToken3 =
@@ -36,33 +35,30 @@ function createNavElement() {
     //     }
     // });
 
-
     //Default header li
-    locationToken = 
-        `<ul class="nav">
+    locationToken = `<ul class="nav">
             <li><a href="home.html">HOME</a></li>
             <li><a href="request.html">REQUEST</a></li>
             <li><a href="stls.html">STLS</a></li>
             <li><a href="learn.html">LEARN</a></li>
             <li><a href="about.html">ABOUT</a></li>
             <li><ion-icon name="sunny-outline" size="large" id="sun"></ion-icon></li>
-        </ul>`
+        </ul>`;
 
     //Reconstruct header li if user is logged in in STLs page
-    if (window.location.href.includes("task.html") || window.location.href.includes("profile.html")) {
-        locationToken = 
-            `<ul class="nav">
+    if (
+        window.location.href.includes("task.html") ||
+        window.location.href.includes("profile.html")
+    ) {
+        locationToken = `<ul class="nav">
                 <li><a href="home.html">HOME</a></li>
                 <li><a href="profile.html">PROFILE</a></li>
                 <li><a href="task.html">TASK</a></li>
                 <li><a href="learn.html">LEARN</a></li>
                 <li><ion-icon name="sunny-outline" size="large" id="sun"></ion-icon></li>
                 <li><ion-icon name="log-out-outline" size="large" id="out"></ion-icon></li>
-            </ul>`
+            </ul>`;
     }
-
-
-
 
     const headerTemplate = document.createElement("template");
     headerTemplate.innerHTML = `
@@ -136,6 +132,7 @@ function createNavElement() {
         display: block;
         padding: 5px;
         transition: all 0.2s ease-in-out;
+        -webkit-user-drag: none;
     }
     
     .nav a:hover{
@@ -216,9 +213,6 @@ function createNavElement() {
     `;
     return headerTemplate;
 }
-
-
-
 
 //construct the nav
 class Header extends HTMLElement {

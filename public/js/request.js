@@ -14,6 +14,12 @@ import { firebaseConfig } from "./Firebase.js";
     const db = getFirestore(app);
 
 
+    // backgroundIconMove();
+
+
+
+
+
 
 
 
@@ -103,3 +109,19 @@ import { firebaseConfig } from "./Firebase.js";
             document.getElementById('msg').innerHTML=`<h1 style="color:#9e0101; font-size: 1.5rem";>Something Went Wrong! <ion-icon name="arrow-up-outline"></ion-icon>`;
         }
     })
+
+
+
+
+
+
+
+
+    function backgroundIconMove() {
+        const icons = document.querySelector(".background-icons").querySelectorAll('img');
+
+        for(var i=0; i<icons.length; i++) {
+            // console.log(icons[i])
+        }
+        // console.log(icons)
+    }

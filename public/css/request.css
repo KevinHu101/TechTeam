@@ -7,20 +7,21 @@ body
 
 .requestForm
 {
-    height: 1700px;
+    height: fit-content;
     width: 800px; /* %52 */
-    border-radius: 50px;
-    background-color: #738598;
+    border-radius: 10px;
+    background-color: #b3b3b3;
     margin: 10% auto;
     box-shadow: 0 0 15px 5px #323232;
+    padding-bottom: 5%;
 }
 
 .headerForm
 {
     height: 150px;
     width: 100%;
-    border-radius: 50px;
-    background-color: #3c415e;
+    border-radius: 10px;
+    background-color: #6f6f6f;
     text-align: center;
     display: flex;
     align-items: center;
@@ -35,14 +36,8 @@ body
 
 .requestForm h2
 {
-    color: #9e0101;
+    color: red;
     left: 0%;
-}
-
-.requestForm #qst
-{
-    font-size: 1.7rem;
-    margin-bottom: 0px;
 }
 
 .requestForm form
@@ -90,7 +85,7 @@ textarea::placeholder {
 
 .input-box, .input-box-required {
     background-color: #dfe2e2;
-    border-radius: 40px;
+    border-radius: 1ch;
     padding: 30px;
     margin-bottom: 7%;
     width: 80%;

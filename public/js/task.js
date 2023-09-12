@@ -111,6 +111,12 @@ function constructTask(requests, tasks) {
     });
 }
 
+
+
+
+
+
+
 //Added assign and delete function for all the li tags (tasks)
 for (var i = 0; i < list.length; i++) {
     list[i].addEventListener("click", function () {
@@ -122,6 +128,25 @@ for (var i = 0; i < list.length; i++) {
     list[i].querySelector("#assign").addEventListener("click", function (e) {
         e.stopPropagation();
         console.log("assign");
+        const listAllUsers = (nextPageToken) => {
+            // List batch of users, 1000 at a time.
+            getAuth()
+              .listUsers(1000, nextPageToken)
+              .then((listUsersResult) => {
+                listUsersResult.users.forEach((userRecord) => {
+                  console.log('user', userRecord.toJSON());
+                });
+                if (listUsersResult.pageToken) {
+                  // List next batch of users.
+                  listAllUsers(listUsersResult.pageToken);
+                }
+              })
+              .catch((error) => {
+                console.log('Error listing users:', error);
+              });
+          };
+          // Start listing users from the beginning, 1000 at a time.
+          listAllUsers();
     });
 
     //delete button
@@ -153,9 +178,16 @@ for (var i = 0; i < list.length; i++) {
                 deleteMsgWrapper.style.zIndex = -1;
                 deleteMsg.style.zIndex = -1;
             });
-        console.log("trash");
     });
 }
+
+
+
+
+
+
+
+
 
 //delete a task li
 deleteMsg.querySelector("form").addEventListener("submit", function (e) {
@@ -190,6 +222,7 @@ function checkTaskNumber(task) {
         document.querySelector(`.${task} .tasksMessage`).textContent =
             "There are no task rn";
         document.querySelector(`.${task}`).style.height = "300px";
+        document.querySelector(`.${task}`).style.filter = "opacity(30%)"
     }
 }
 
